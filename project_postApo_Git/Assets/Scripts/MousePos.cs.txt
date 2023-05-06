@@ -1,0 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnitySteer2D;
+using UnitySteer2D.Behaviors;
+
+public class MousePos : MonoBehaviour
+{
+    public Vector3 worldMouse;
+    private Camera cam;
+    private SteerForPoint2D target;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        cam = Camera.main;
+        target = GetComponent<SteerForPoint2D>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        worldMouse = cam.ScreenToWorldPoint(Input.mousePosition);
+        target.TargetPoint = new Vector2(worldMouse.x, worldMouse.y);
+    }
+}
