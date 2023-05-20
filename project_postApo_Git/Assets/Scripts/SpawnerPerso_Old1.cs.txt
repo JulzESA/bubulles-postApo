@@ -25,9 +25,9 @@ public class SpawnerPerso : MonoBehaviour
     public int amount;              // nombre de particules
     public GameObject[] particles;  // crée un tableau avec chaque particule dans une ligne
 
-    public Transform[] steps;
+    int PCounter;                   // compte le nombre de particules
 
-    public GameObject[] Collider;
+    public Transform[] steps;
 
     public int currentStep;
 
@@ -42,27 +42,7 @@ public class SpawnerPerso : MonoBehaviour
         if (Input.GetKeyDown("p"))
         {
             NextStep();
-        }
-
-        if (currentStep ==1)
-        {
-            Collider[0].SetActive(false);
-        }
-
-        if (currentStep ==2)
-        {
-            Collider[1].SetActive(false);
-        }
-
-        if (currentStep ==3)
-        {
-            Collider[2].SetActive(false);
-        }
-
-        if (currentStep ==4)
-        {
-            Collider[3].SetActive(false);
-            Collider[4].SetActive(false);
+            Debug.Log("hello");
         }
     }
 
@@ -74,9 +54,17 @@ public class SpawnerPerso : MonoBehaviour
         for (var i = 0; i < amount; i++)
         {
             particles[i] = Instantiate(prefab, new Vector3(-1.46f, 18.9f, 0), Quaternion.identity); //crée un nb i de prefab, sur un axe x de i*2 sans changer d'orientation
+            //Debug.Log(particles[i].GetComponent<SteerForCohesion2D>().enabled);
+            //particles[i].GetComponent<PathFollowingController2D>()._pathRoot = steps[0];
 
+            
+            //particles[i].GetComponent<PathFollowingController2D>().AssignPath();
+
+            PCounter++;
             yield return null;
+            //yield return new WaitForSeconds(0.1f); // attendre 0.5 seconde avant de créer la particule suivante
         }
+
 
     }
 

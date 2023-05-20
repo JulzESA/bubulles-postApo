@@ -27,9 +27,7 @@ public class PathFollowingController2D : MonoBehaviour
 		ribody = GetComponent<Rigidbody2D>();
 		_steering = GetComponent<SteerForPathSimplified2D>();
 		_pathRoot = GameObject.Find("PathZero").transform;
-		AssignPath();
-
-		
+		AssignPath();	
 	}
 
     private void Update()
