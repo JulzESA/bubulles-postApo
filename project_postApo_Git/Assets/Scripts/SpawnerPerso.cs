@@ -26,6 +26,7 @@ public class SpawnerPerso : MonoBehaviour
     public GameObject[] particles;  // crée un tableau avec chaque particule dans une ligne
 
     public Transform[] steps;
+    public Transform pathDAlternatif;
 
     public GameObject[] Collider;
 
@@ -89,6 +90,10 @@ public class SpawnerPerso : MonoBehaviour
         {
             // on lui indique un nouveau chemin
             particles[i].GetComponent<PathFollowingController2D>()._pathRoot = steps[currentStep];
+            if(i<amount/2 && currentStep == 4)
+            {
+                particles[i].GetComponent<PathFollowingController2D>()._pathRoot = pathDAlternatif;
+            }
             particles[i].GetComponent<PathFollowingController2D>().AssignPath();
         }
     }

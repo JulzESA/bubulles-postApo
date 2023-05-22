@@ -47,7 +47,7 @@ public class PathFollowingController2D : MonoBehaviour
 	{
 		GetComponent<SteerForWander2D>().enabled = true;
 		_steering.enabled = true;
-		ribody.mass = 0.0001f;
+		ribody.mass = 1.0001f;
 		ribody.gravityScale = 0.1f;
 
 		// Get a list of points to follow;

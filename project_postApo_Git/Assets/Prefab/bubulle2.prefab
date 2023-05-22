@@ -38,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 8071350380545966495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -151,10 +151,10 @@ MonoBehaviour:
   _minSpeedForTurning: 0.01
   _movementPriority: 0
   _turnTime: 0.01
-  _mass: 1
+  _mass: 0.1
   _allowedMovementAxes: {x: 1, y: 1}
   _arrivalRadius: 0.5
-  _maxSpeed: 50
+  _maxSpeed: 10
   _maxForce: 10
   _canMove: 1
   _forward: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
   _tickLength: 0.1
   _maxQueueProcessedPerUpdate: 20
   _traceAdjustments: 0
-  _accelerationRate: 50
+  _accelerationRate: 10
   _decelerationRate: 8
 --- !u!114 &8071350380545966482
 MonoBehaviour:
