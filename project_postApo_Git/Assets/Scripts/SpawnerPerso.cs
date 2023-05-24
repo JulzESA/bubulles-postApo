@@ -21,6 +21,8 @@ using UnitySteer2D.Behaviors;
 
 public class SpawnerPerso : MonoBehaviour
 {
+    public Transform _startPos;
+
     public GameObject prefab;       // objet qui va être multiplié
     public int amount;              // nombre de particules
     public GameObject[] particles;  // crée un tableau avec chaque particule dans une ligne
@@ -31,39 +33,24 @@ public class SpawnerPerso : MonoBehaviour
     public GameObject[] Collider;
 
     public int currentStep;
+    public int pAccount;
 
     private void Start()
     {
-        StartCoroutine(CreateParticles());
+        _startPos = GameObject.Find("GrandmasterGameobj").transform;
     }
 
 
     void Update()
     {
-        if (Input.GetKeyDown("p"))
+        if (Input.GetKeyDown("p") && pAccount == 0)
+        {
+            StartCoroutine(CreateParticles());
+        }
+
+        if (Input.GetKeyDown("p") && pAccount>0)
         {
             NextStep();
-        }
-
-        if (currentStep ==1)
-        {
-            Collider[0].SetActive(false);
-        }
-
-        if (currentStep ==2)
-        {
-            Collider[1].SetActive(false);
-        }
-
-        if (currentStep ==3)
-        {
-            Collider[2].SetActive(false);
-        }
-
-        if (currentStep ==4)
-        {
-            Collider[3].SetActive(false);
-            Collider[4].SetActive(false);
         }
     }
 
@@ -74,10 +61,13 @@ public class SpawnerPerso : MonoBehaviour
 
         for (var i = 0; i < amount; i++)
         {
-            particles[i] = Instantiate(prefab, new Vector3(-1.46f, 18.9f, 0), Quaternion.identity); //crée un nb i de prefab, sur un axe x de i*2 sans changer d'orientation
+            particles[i] = Instantiate(prefab, new Vector3(_startPos.position.x, _startPos.position.y, _startPos.position.z), Quaternion.identity); //crée un nb i de prefab, sur un axe x de i*2 sans changer d'orientation
 
             yield return null;
+            //yield return new WaitForSeconds(0.1f);
         }
+
+        pAccount = (pAccount + 1);
 
     }
 
@@ -95,6 +85,27 @@ public class SpawnerPerso : MonoBehaviour
                 particles[i].GetComponent<PathFollowingController2D>()._pathRoot = pathDAlternatif;
             }
             particles[i].GetComponent<PathFollowingController2D>().AssignPath();
+        }
+
+        if (currentStep == 1)
+           {
+            Collider[0].SetActive(false);
+           }
+
+        if (currentStep == 2)
+        {
+            Collider[1].SetActive(false);
+        }
+
+        if (currentStep == 3)
+        {
+            Collider[2].SetActive(false);
+        }
+
+        if (currentStep == 4)
+        {
+            Collider[3].SetActive(false);
+            Collider[4].SetActive(false);
         }
     }
 }
