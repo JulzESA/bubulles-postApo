@@ -155,7 +155,7 @@ MonoBehaviour:
   _allowedMovementAxes: {x: 1, y: 1}
   _arrivalRadius: 0.5
   _maxSpeed: 10
-  _maxForce: 5
+  _maxForce: 10
   _canMove: 1
   _forward: 0
   _queueName: Steering2D
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weight: 1
   _minDistance: 1
-  _maxDistance: 10
+  _maxDistance: 5
 --- !u!114 &-8770941932468429084
 MonoBehaviour:
   m_ObjectHideFlags: 0
