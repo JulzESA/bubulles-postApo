@@ -35,9 +35,27 @@ public class SpawnerPerso : MonoBehaviour
     public int currentStep;
     public int pAccount;
 
+    public GameObject CameraQuad;
+
     private void Start()
     {
         _startPos = GameObject.Find("GrandmasterGameobj").transform;
+    }
+
+    public void ChangeParticleColor(Color new_c)
+    {
+        for (int p=0; p < particles.Length; p++)
+        {
+            if (particles[p] != null)
+            {
+                SpriteRenderer s_r = particles[p].GetComponent<SpriteRenderer>();
+                s_r.color = new_c;
+            }
+        }
+
+        Renderer ca_r = CameraQuad.GetComponent<Renderer>();
+        Material ca_m = ca_r.material;
+        ca_m.color = new_c;
     }
 
 
