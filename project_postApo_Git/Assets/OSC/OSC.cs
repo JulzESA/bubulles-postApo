@@ -712,7 +712,6 @@ public class OSC : MonoBehaviour
         //oscM.values.Add(typeTag);
         foreach (char c in typeTag)
         {
-            print(c);
             switch (c)
             {
                 case ',':

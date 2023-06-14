@@ -59,16 +59,24 @@ public class SpawnerPerso : MonoBehaviour
     }
 
 
-    void Update()
+    public void RunAnimatorController()
     {
-        if (Input.GetKeyDown("p") && pAccount == 0)
+        if (pAccount == 0)
         {
             StartCoroutine(CreateParticles());
         }
 
-        if (Input.GetKeyDown("p") && pAccount>0)
+        if (pAccount > 0)
         {
             NextStep();
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown("p"))
+        {
+            RunAnimatorController();
         }
     }
 
