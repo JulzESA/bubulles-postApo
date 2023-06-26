@@ -48,11 +48,24 @@ public class ColorChanger : MonoBehaviour
         int msg_id = int.Parse(msg_code);
         */
 
-        if (color_id >= 0 && color_id < emotions.Length)
+        if (color_id >= 0 && color_id < emotions.Length && color_id < symboles.Length)
         {
-            SpawnerP.ChangeParticleColor(emotions[color_id]);
-            symboles[color_id].SetActive(true);
 
+            SpawnerP.ChangeParticleColor(emotions[color_id]);
+
+            List<GameObject> activeSym = new List<GameObject>();
+            for (int i = 0; i < symboles.Length; i++)
+            {
+                if (symboles[i].activeSelf) activeSym.Add(symboles[i]);
+            }
+
+            while (activeSym.Count >= 5) {
+                int randID = (int)Mathf.Floor(Random.value * activeSym.Count);
+                activeSym[randID].SetActive(false);
+                activeSym.RemoveAt(randID);
+            }
+
+            symboles[color_id].SetActive(true);
         }
 
         /*    if (test_id >= 0)

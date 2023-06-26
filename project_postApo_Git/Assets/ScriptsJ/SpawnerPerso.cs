@@ -37,9 +37,25 @@ public class SpawnerPerso : MonoBehaviour
 
     public GameObject CameraQuad;
 
+    public AudioSource StartingMusic;
+    public AudioSource Abis;
+    public AudioSource B;
+    public AudioSource Bbis;
+    public AudioSource D;
+    public AudioSource C1;
+    public AudioSource C2;
+    public AudioSource C3;
+
+
+    int s;
+
     private void Start()
     {
         _startPos = GameObject.Find("GrandmasterGameobj").transform;
+        StartingMusic.Play();
+        s = 0;
+        Abis.Play();
+
     }
 
     public void ChangeParticleColor(Color new_c)
@@ -70,6 +86,8 @@ public class SpawnerPerso : MonoBehaviour
         {
             NextStep();
         }
+
+        NextMusic();
     }
 
     void Update()
@@ -100,7 +118,7 @@ public class SpawnerPerso : MonoBehaviour
     void NextStep()
     {
         currentStep = (currentStep + 1) % steps.Length;
-
+        
         // pour chaque bubulle
         for (var i = 0; i < amount; i++)
         {
@@ -134,5 +152,39 @@ public class SpawnerPerso : MonoBehaviour
             Collider[4].SetActive(false);
         }
     }
+
+    void NextMusic()
+    {
+
+        s = s + 1;
+        Debug.Log("Valeur de S" + s);
+        if (s == 1)
+        {
+            StartingMusic.Stop();
+            B.Play();
+        }
+        if (s == 2)
+        {
+            B.Stop();
+            Bbis.Play();
+            C1.Play();
+        }
+        if (s == 3)
+        {
+            Bbis.Play();
+            C2.Play();
+        }
+        if (s == 4)
+        {
+            Bbis.Play();
+            C3.Play();
+        }
+        if (s == 5)
+        {
+            Bbis.Stop();
+            D.Play();
+        }
+    }
+
 }
 
